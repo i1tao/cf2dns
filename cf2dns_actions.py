@@ -46,8 +46,9 @@ def get_optimization_ip():
             return response.json()
         else:
             print("CHANGE OPTIMIZATION IP ERROR: REQUEST STATUS CODE IS NOT 200")
+            print(data)
             print(response.status_code)
-            printf(response.json)
+            print(response.json())
             return None
     except Exception as e:
         print("CHANGE OPTIMIZATION IP ERROR: " + str(e))
