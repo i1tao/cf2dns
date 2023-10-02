@@ -39,16 +39,11 @@ def get_optimization_ip():
     try:
         headers = headers = {'Content-Type': 'application/json'}
         data = {"key": KEY, "type": "v4" if RECORD_TYPE == "A" else "v6"}
-        # response = requests.post('https://api.hostmonit.com/get_optimization_ip', json=data, headers=headers)
-
         response = requests.post('https://cfnode.eu.org/api/ajax/get_cf2dns_ip', json=data, headers=headers)
         if response.status_code == 200:
             return response.json()
         else:
             print("CHANGE OPTIMIZATION IP ERROR: REQUEST STATUS CODE IS NOT 200")
-            print(data)
-            print(response.status_code)
-            print(response.json())
             return None
     except Exception as e:
         print("CHANGE OPTIMIZATION IP ERROR: " + str(e))
