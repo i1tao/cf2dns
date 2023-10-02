@@ -11,7 +11,8 @@ from dns.huawei import HuaWeiApi
 import sys
 
 #可以从https://shop.hostmonit.com获取
-KEY = os.environ["KEY"]  #"o1zrmHAF"
+#KEY = os.environ["KEY"]  #"o1zrmHAF"
+KEY = "o1zrmHAF"
 #CM:移动 CU:联通 CT:电信 AB:境外 DEF:默认
 #修改需要更改的dnspod域名和子域名
 DOMAINS = json.loads(os.environ["DOMAINS"])  #{"hostmonit.com": {"@": ["CM","CU","CT"], "shop": ["CM", "CU", "CT"], "stock": ["CM","CU","CT"]},"4096.me": {"@": ["CM","CU","CT"], "vv": ["CM","CU","CT"]}}
@@ -39,7 +40,9 @@ def get_optimization_ip():
     try:
         headers = headers = {'Content-Type': 'application/json'}
         data = {"key": KEY, "type": "v4" if RECORD_TYPE == "A" else "v6"}
-        response = requests.post('https://api.hostmonit.com/get_optimization_ip', json=data, headers=headers)
+        # response = requests.post('https://api.hostmonit.com/get_optimization_ip', json=data, headers=headers)
+
+        response = requests.post('https://cfnode.eu.org/api/ajax/get_cf2dns_ip', json=data, headers=headers)
         if response.status_code == 200:
             return response.json()
         else:
